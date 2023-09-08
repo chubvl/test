@@ -2,66 +2,187 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>autorization</title>
-    <!--    <link rel="stylesheet" href="bootstrap.css">-->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        .main {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            width: 100%;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link href="https://fonts.cdnfonts.com/css/roboto-flex" rel="stylesheet">
+    <script src="index.js"></script>
+    <!--<script src="cookie.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script type="text/jаvascript" src="js/jquery-3.5.1.js"></script>
+    <script src="https://yandex.st/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function ($) {
+            $('.find_out_the_price').click(function () {
+                $('.popup-fade').fadeIn();
+                return false;
+            });
 
-            align-items: center;
-        }
-        .img-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            flex-direction: row;
-        }
-        img {
-            width: 30vw;
-            border-radius: 15px;
-        }
-        h1 {
-            text-align: center;
-        }
-        .divButton {
-            width: 10vw;
-            background-color: #ffb4ff;
-            border-radius: 20px;
-            text-align: center;
-            margin: 10px;
-            padding: 5px;
-            
-        }
-        .divButton:active {
-            filter: opacity(0.5)
-        }
-        
-    </style>
+            $('.popup-close').click(function () {
+                $(this).parents('.popup-fade').fadeOut();
+                return false;
+            });
+
+            $(document).keydown(function (e) {
+                if (e.keyCode === 27) {
+                    e.stopPropagation();
+                    $('.popup-fade').fadeOut();
+                }
+            });
+
+            $('.popup-fade').click(function (e) {
+                if ($(e.target).closest('.popup').length == 0) {
+                    $(this).fadeOut();
+                }
+            });
+        });
+    </script>
+    <title>Подберите программный продукт 1С</title>
 </head>
 
 <body>
 
-    <div class="main">        
-        <h1>Добро пожаловать в систему</h1>
-        <div class="img-container">
-            <img src="1637680236_11-krot-info-p-tailand-pkhuket-more-peizazh-krasivoe-foto-13.jpg">
+    <div class="col-container">
+        <div class="col-container_scrol" id="col-container_scrol">
+            <div class="col-container_history">Здесь будут Ваши ответы...</div>
         </div>
-        <a href="|data1">Это ссылка</a>
-        <button onclick="|data2">Это кнопка</button>
-        <div class="divButton" onclick="|data3">Это блок</div>    
     </div>
-       
-       
 
+    <div class="previous_question">
+        <div class="previous_question_plug"></div>
+        <div class="previous_question_img hidden" id="id_0" onclick="previous_question();"><img
+                src="images/previous.svg" alt=""></div>
+    </div>
+
+    <div class="selected_product_main hidden">
+        <div class="selected_product_block">
+            <div class="selected_product_box">
+                <div class="selected_product_cap">Программные продукты для вашего бизнеса:</div>
+                <div class="product_list" id="product_list">
+
+                </div>
+                <div class="selected_product_button"><button class="find_out_the_price">Узнать цену и начать
+                        внедрение</button> </div>
+                <div class="selected_product_button"><button class="question_again" onclick="question_again()">Ответить
+                        на вопросы еще раз</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-fade">
+        <div class="popup">
+            <div class="popup_main">
+                <div class="popup_block">
+                    <form class="popup_box" action="#" id="formback" name="formback" onsubmit="return false;">
+                        <div class="popup_cap">Обратный звонок</div>
+                        <div class="input_block" id="input_block_name">
+                            <input class="popup_box_input" type="text" id="name" name="name"
+                                placeholder="Как к вам обращаться?" data-reg="^([А-ЯЁ][а-яё-]* *){1,}$" />
+                        </div>
+                        <div class="two_input">
+                            <div class="input_block_phone" id="input_block_phone">
+                                <input class="two_input_phone" type="text" id="phone" name="phone" placeholder="Телефон"
+                                    data-reg="^((\+7|7|8)+([0-9]){10})$" />
+                            </div>
+                            <div class="input_block_email" id="input_block_email">
+                                <input class="two_input_email" type="text" id="email" name="email" placeholder="Email"
+                                    data-reg='^[a-zA-Z0-9_+&*-]+(?:\.[a-zA-Z0-9_+&*-]+)*@+(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$' />
+                            </div>
+                        </div>
+                        <div class="input_block">
+                            <textarea id="comment" placeholder="Комментарий (необязательно)"></textarea>
+                        </div>
+                        <div class="input_block" id="input_block_checkbox">
+                            <label>
+                                <input type='checkbox' id="checkbox" />
+                                <span></span>
+                                Согласие <a href="">на обработку</a> персональных данных
+                            </label>
+                        </div>
+                        <div class="input_block_button">
+                            <input class="popup_box_button" type="submit" id="button" value="Отправить заявку" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <a class="popup-close" href="#"><img src="images/Group 15.svg" alt=""></a>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="container-fluid">
+            <div class="row" id="row">
+                <div id="question_now">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="popup-container">
+        <div class="popup-transitionWarning">
+            <div id="transitionWarning">
+                <div class="transitionWarning_box">
+                    <div class="transitionWarning_info">При переходе на этот вопрос ответы, которые были выбраны
+                        после него, будут удалены. Вы уверены?</div>
+                    <div class="two_button">
+                        <button class="buttonGo" onclick="goToQuestion();">Перейти</button>
+                        <button class="buttonStay" onclick="closePopup();">Остаться на текущем вопросе</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile_user hidden" id="profile_user">
+        <div class="profile_user_box" id="userNoAuthorized">
+            <div class="profile_user_greetings">Добро пожаловать!</div>
+            <a href="authorization/authorization.html"><button>Авторизоваться</button></a>
+        </div>
+    </div>
+    <div class="authorizationPrompt" id="authorizationPrompt" style="display: none;">
+        <div class="authorizationPromptBox">
+            <div class="authorizationInfo">Вы можете авторизоваться, чтобы не потерять историю ответов на вопросы, а
+                также рекомендованные программные продукты!</div>
+            <button onclick="closeAuthorizationPrompt(authorizationPrompt);">Понятно</button>
+        </div>
+    </div>
+    <div class="back_call hidden" id="back_call">
+        <div class="form_block" id="form_block">
+            <form class="back_call_box" action="#" id="formback_call" name="formback_call" onsubmit="return false;">
+                <div class="back_call_cap">Закажите обратный звонок</div>
+                <input type="text" id="back_call_name" name="back_call_name" placeholder="Как к вам обращаться?"
+                    data-reg="^([А-ЯЁ][а-яё-]* *){1,}$" />
+                <input type="text" id="back_call_phone" name="back_call_phone" placeholder="Номер телефона"
+                    data-reg="^((\+7|7|8)+([0-9]){10})$" />
+                <textarea id="back_call_comment" placeholder="Комментарий (необязательно)"></textarea>
+                <div class="back_call_button">
+                    <input type="submit" id="button" value="Отправить" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/fce9a50d02.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+    <div class="footer">
+        <div class="footer_img" onclick="opening_exit_forms(back_call);"><img src="images/phone.svg" alt=""></div>
+    </div>
+    <div class="header">
+        <div class="wrap-logo">
+            <a href="https://rarus.ru/" class="logo"><img src="images/logo-1c-rarus 1.svg" alt=""></a>
+        </div>
+        <h1 class="center">Подберите программный продукт 1С</h1>
+        <nav>
+            <a class="active" href="tel:+74955277474">+7 (495) 527 74 74</a>
+            <div class="profile_user_open" onclick="opening_exit_forms(profile_user);"><img
+                    src="images/profile-user-svgrepo-com 1.svg"></div>
+        </nav>
+
+    </div>
+    <script src="xhr.js"></script>
+    <script src="popup.js"></script>
 </body>
 
 </html>
