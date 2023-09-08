@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/roboto-flex" rel="stylesheet">
+    <link rel="stylesheet" href="authorization_style.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script type="text/jаvascript" src="js/jquery-3.5.1.js"></script>
+    <script src="../authorization/authorization_index.js"></script>
+    <script src="../authorization/authorization_xhr.js"></script>
+    <script src="../index.js"></script>
+    <title>Авторизация</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="wrap-logo">
+            <a href="https://rarus.ru/" class="logo"><img src="../images/logo-1c-rarus 1.svg" alt=""></a>
+        </div>
+        <h1 class="center">Подберите программный продукт 1С</h1>
+        <nav>
+            <a class="active" href="tel:+74955277474">+7 (495) 527 74 74</a>
+        </nav>
+    </header>
+    <div class="authorization_main">
+        <div class="authorization_block" id="authorization_block">
+            <form class="authorization_1" action="#" id="formback_authorization_1" name="formback_authorization_1" onsubmit="return false;">
+                <div class="authorization_box hidden">
+                    <div class="authorization_cap">Авторизация</div>
+                    <div class="input_block" id="input_block_phone">
+                        <input 
+                            class="authorization_box_input_1"
+                            type="text" 
+                            id="phone" 
+                            name="phone" 
+                            placeholder="Номер телефона" 
+                            data-reg="^((\+7|7|8)+([0-9]){10})$"
+                        />
+                    </div>
+                    <input class="authorization_box_button_" type="submit" id="button_1" value="Получить код" />
+                </div>
+            </form>
+            <script
+                src="https://kit.fontawesome.com/fce9a50d02.js"
+                crossorigin="anonymous">
+            </script>
+            <script src="../authorization/authorization_app.js"></script>
+        </div>
+    </div>
+</body>
+
+</html>
